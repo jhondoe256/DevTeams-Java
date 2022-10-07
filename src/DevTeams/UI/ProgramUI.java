@@ -1,8 +1,10 @@
 package DevTeams.UI;
 
 import DevTeams.Data.Developer;
+import DevTeams.Data.DeveloperTeam;
 import DevTeams.Data.Enums.DeveloperType;
 import DevTeams.Repository.DeveloperRepository;
+import DevTeams.Repository.DeveloperTeamRepository;
 
 import java.io.Console;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 public class ProgramUI {
     private Scanner scanner = new Scanner(System.in);
     private DeveloperRepository _devRepo = new DeveloperRepository();
+    private DeveloperTeamRepository _devTeamRepo = new DeveloperTeamRepository(_devRepo);
     public void Run(){
         SeedDevelopers();
         RunApplication();
@@ -33,6 +36,9 @@ public class ProgramUI {
         _devRepo.addDeveloper(devB);
         _devRepo.addDeveloper(devC);
 
+        var TeamA = new DeveloperTeam();
+        TeamA.setDevelopers(List.of(devA,devB));
+        _devTeamRepo.AddDevTeam(TeamA);
     }
     private void RunApplication() {
         boolean isRunning = true;
@@ -169,7 +175,7 @@ public class ProgramUI {
         TypeContinueToProceed();
     }
     private void TypeContinueToProceed() {
-        System.out.println("type: continue to proceed.");
+        System.out.println("Type: continue, and press ENTER to proceed.");
         if( scanner.next() == "continue")
             ClearConsole();
         RunApplication();
@@ -246,6 +252,7 @@ public class ProgramUI {
         }
     }
     private void LoadDeveloperTeamUI(){
-
+        DevTeamUI UI = new DevTeamUI(_devTeamRepo);
+        UI.Run();
     }
 }
