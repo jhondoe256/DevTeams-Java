@@ -9,7 +9,6 @@ import java.util.Optional;
 public class DeveloperRepository {
     private List<Developer> _developers = new ArrayList<>();
     private  Integer _Count = 0;
-//c
     public boolean addDeveloper(Developer developer){
         return (developer == null)? false : addToRepository(developer);
     }
@@ -19,16 +18,13 @@ public class DeveloperRepository {
         _developers.add(developer);
         return true;
     }
-//r
     public Optional<Developer> getDeveloperDetails(int id){
        var developer = _developers.stream().filter(d->d.getId()==id).findAny();
        return developer;
     }
-//r
     public List<Developer>getAllDevelopers(){
         return _developers;
     }
-//u
     public boolean updateDeveloperDetails(int id, Developer devDetails){
         var developer = getDeveloperDetails(id);
 
@@ -38,11 +34,13 @@ public class DeveloperRepository {
         developer.get().setLastName(devDetails.getLastName());
         return true;
     }
-//d
     public  boolean deleteDeveloper(int id){
         var developer = getDeveloperDetails(id);
         if(developer==null)return false;
         else _developers.remove(developer.get());
         return true;
+    }
+    public List<Developer> devsNoPluralsight(){
+        return _developers.stream().filter(d->d.getHasPluralSight()==false).toList();
     }
 }

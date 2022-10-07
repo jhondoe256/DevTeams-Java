@@ -50,7 +50,8 @@ public class ProgramUI {
                     "3.  View Developer Details By Id\n" +
                     "4.  Update Existing Developer Details\n" +
                     "5.  Delete Existing Developer\n" +
-                    "6.  Load Developer Team UI\n" +
+                    "6.  Devs Without Ps Listing\n" +
+                    "7.  Load Developer Team UI\n"+
                     "50. Close Application\n");
 
             var userInput = scanner.next();
@@ -83,6 +84,11 @@ public class ProgramUI {
                 case "6":
                 case "six":
                     ClearConsole();
+                    DevsWithoutPsListing();
+                    break;
+                case "7":
+                case "seven":
+                    ClearConsole();
                     LoadDeveloperTeamUI();
                     break;
                 case "50":
@@ -91,6 +97,13 @@ public class ProgramUI {
             }
         }
     }
+
+    private void DevsWithoutPsListing() {
+        var devs= _devRepo.devsNoPluralsight();
+        System.out.println(devs);
+        TypeContinueToProceed();
+    }
+
     private static boolean CloseApplication() {
         boolean isRunning;
         isRunning=false;

@@ -52,11 +52,9 @@ public class Developer {
     public void setHasPluralSight(Boolean hasPluralSight) {
         HasPluralSight = hasPluralSight;
     }
-
     public void setId(Integer id) {
         Id = id;
     }
-
     @Override
     public String toString(){
         var developerDetails = "Id: "+getId() + "\n" + "Name: " + getFirstName() +" "+ getLastName() +"\n"+"------- Skill Sets ----------\n"+
